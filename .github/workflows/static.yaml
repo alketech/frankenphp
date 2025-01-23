@@ -107,10 +107,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Check repo owner
-        run: |
-          echo "${{ github.repository_owner }}"
+      - name: check docker login
+        run: docker pull ${{ env.IMAGE_NAME }}:test
       - name: Build
         id: build
         uses: docker/bake-action@v5
