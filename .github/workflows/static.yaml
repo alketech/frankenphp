@@ -111,7 +111,7 @@ jobs:
             *.tags=
             *.platform=${{ matrix.platform }}
             *.cache-from=type=registry,ref=${{ env.IMAGE_NAME }}:cachebuilder-${{ steps.prepare.outputs.sanitized_platform }}-static-builder${{ matrix.debug && '-debug' || '' }}${{ matrix.mimalloc && '-mimalloc' || '' }}
-            *.cache-to=type=registry,ref=${{ env.IMAGE_NAME }}:cachebuilder-${{ steps.prepare.outputs.sanitized_platform }}-static-builder${{ matrix.debug && '-debug' || '' }}${{ matrix.mimalloc && '-mimalloc' || '' }}
+            *.cache-to=type=registry,ref=${{ env.IMAGE_NAME }}:cachebuilder-${{ steps.prepare.outputs.sanitized_platform }}-static-builder${{ matrix.debug && '-debug' || '' }}${{ matrix.mimalloc && '-mimalloc' || '' }},mode=max
             ${{ (fromJson(needs.prepare.outputs.push) && !matrix.debug && !matrix.mimalloc) && format('*.output=type=image,name={0},push-by-digest=true,name-canonical=true,push=true', env.IMAGE_NAME) || '' }}
         env:
           SHA: ${{ github.sha }}
