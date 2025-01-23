@@ -110,7 +110,7 @@ jobs:
 
       - name: Check repo owner
         run: |
-          echo "{{ github.repository_owner }}"
+          echo "${{ github.repository_owner }}"
       - name: Build
         id: build
         uses: docker/bake-action@v5
