@@ -246,7 +246,7 @@ jobs:
           fi
 
           echo "FRANKENPHP_VERSION=${FRANKENPHP_VERSION}" >> "${GITHUB_ENV}"
-      - name: actions/cache@v4
+      - uses: actions/cache@v4
         with:
           path: |
             ~/Library/Caches/Homebrew
