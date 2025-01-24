@@ -246,6 +246,13 @@ jobs:
           fi
 
           echo "FRANKENPHP_VERSION=${FRANKENPHP_VERSION}" >> "${GITHUB_ENV}"
+      - name: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/Homebrew
+            ~/Library/Caches/composer
+            ~/mimalloc
+          key: {{ $runner.os }}-build-static
       - name: Build FrankenPHP
         run: ./build-static.sh
         env:
