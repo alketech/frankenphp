@@ -252,7 +252,7 @@ jobs:
             ~/Library/Caches/Homebrew
             ~/Library/Caches/composer
             ~/mimalloc
-          key: ${{ $runner.os }}-build-static
+          key: ${{ runner.os }}-build-static
       - name: Build FrankenPHP
         run: ./build-static.sh
         env:
