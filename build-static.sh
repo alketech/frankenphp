@@ -158,13 +158,8 @@ fi
 # Compile e-dant/watcher as a static library
 mkdir -p watcher
 cd watcher
-curl -f --retry 5 "${curlGitHubHeaders[@]}" https://api.github.com/repos/e-dant/watcher/releases/latest |
-	grep tarball_url |
-	awk '{ print $2 }' |
-	sed 's/,$//' |
-	sed 's/"//g' |
-	xargs curl -fL --retry 5 "${curlGitHubHeaders[@]}" |
-	tar xz --strip-components 1
+gh release download -R e-dant/watcher -A tar.gz --skip-existing
+tar xz --strip-components 1 *.tar.gz
 cd watcher-c
 cc -c -o libwatcher-c.o ./src/watcher-c.cpp -I ./include -I ../include -std=c++17 -Wall -Wextra "${fpic}"
 ar rcs libwatcher-c.a libwatcher-c.o
